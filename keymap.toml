@@ -1,0 +1,98 @@
+# Yazi key bindings. The built-in keymap is already vim-like (h j k l, gg, G,
+# yy-style yank with y, p paste, / search, n/N next/previous match, v visual
+# mode, V visual-line selection). Everything below is added on top of it.
+# Reference: https://yazi-rs.github.io/docs/configuration/keymap
+
+[mgr]
+prepend_keymap = [
+	# --- Vim editing verbs -------------------------------------------------
+	# `dd` cuts the hovered/selected files (like `dd` in vim); paste with `p`.
+	{ on = ["d", "d"], run = "yank --cut", desc = "Cut selected files (vim dd)" },
+	# `yy` yanks (copies) the hovered/selected files.
+	{ on = ["y", "y"], run = "yank",       desc = "Copy selected files (vim yy)" },
+	# `dD` removes files permanently, without the trash.
+	{ on = ["d", "D"], run = "remove --permanently", desc = "Delete permanently" },
+	# `dt` sends files to the trash (single `d` is left for the chords above).
+	{ on = ["d", "t"], run = "remove",     desc = "Move to trash" },
+	{ on = "u",        run = "unyank",     desc = "Undo the last yank/cut (clear clipboard)" },
+
+	# --- Motion ------------------------------------------------------------
+	{ on = "f",         run = "plugin type-ahead",   desc = "Type letters to jump to the first file starting with them" },
+	{ on = "F",         run = "filter --smart",      desc = "Filter files in this directory" },
+	{ on = "l",         run = "plugin smart-enter",  desc = "Enter directory, or open file" },
+	{ on = "<Right>",   run = "plugin smart-enter",  desc = "Enter directory, or open file" },
+	{ on = "<Enter>",   run = "plugin smart-enter",  desc = "Enter directory, or open file" },
+
+	# --- Tabs (vim-style) --------------------------------------------------
+	{ on = ["g", "t"], run = "tab_switch 1 --relative",  desc = "Next tab (vim gt)" },
+	{ on = ["g", "T"], run = "tab_switch -1 --relative", desc = "Previous tab (vim gT)" },
+
+	# --- Go-to shortcuts ---------------------------------------------------
+	{ on = ["g", "h"], run = "cd ~",              desc = "Go home" },
+	{ on = ["g", "c"], run = "cd ~/.config",      desc = "Go to ~/.config" },
+	{ on = ["g", "l"], run = "cd ~/.local/share", desc = "Go to ~/.local/share" },
+	{ on = ["g", "d"], run = "cd ~/Downloads",    desc = "Go to Downloads" },
+	{ on = ["g", "D"], run = "cd ~/Documents",    desc = "Go to Documents" },
+	{ on = ["g", "p"], run = "cd ~/Pictures",     desc = "Go to Pictures" },
+	{ on = ["g", "v"], run = "cd ~/Videos",       desc = "Go to Videos" },
+	{ on = ["g", "m"], run = "cd ~/MEGA-RMS",     desc = "Go to MEGA-RMS" },
+	{ on = ["g", "P"], run = "cd ~/Projects",     desc = "Go to Projects" },
+	{ on = ["g", "k"], run = "cd ~/Desktop",      desc = "Go to Desktop" },
+	{ on = ["g", "/"], run = "cd /",              desc = "Go to filesystem root" },
+	{ on = ["g", "e"], run = "cd /etc",           desc = "Go to /etc" },
+
+	# --- Panes and views ---------------------------------------------------
+	{ on = "T",         run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
+	{ on = "<C-p>",     run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
+	{ on = ".",         run = "hidden toggle",                  desc = "Toggle hidden files" },
+	{ on = ["z", "h"],  run = "hidden toggle",                  desc = "Toggle hidden files (vim-style z prefix)" },
+
+	# --- File tools --------------------------------------------------------
+	{ on = ["c", "m"],  run = "plugin chmod", desc = "Change permissions (chmod) of selected files" },
+	{ on = ["c", "D"],  run = "plugin diff",  desc = "Diff the selected file against the hovered file" },
+	{ on = "M",         run = "plugin mount", desc = "Mount, unmount or eject drives" },
+
+	# --- Shell integration -------------------------------------------------
+	{ on = "<C-t>",     run = 'shell --orphan -- kitty --directory "$PWD"', desc = "Open kitty terminal here" },
+	{ on = "<C-x>",     run = 'shell --orphan -- xdg-open "$PWD"',          desc = "Open this directory in the LXQt file manager" },
+
+	# --- Confirmations -----------------------------------------------------
+	# Moving (pasting a cut), overwriting, renaming and deleting all ask first.
+	# Copies that do not collide paste straight away; collisions use yazi's own
+	# overwrite dialog.
+	{ on = "p",     run = "plugin confirm -- plugin smart-paste --only-for-cut", desc = "Paste (asks before moving)" },
+	{ on = "P",     run = 'plugin confirm -- paste --force --title="Paste and OVERWRITE existing files?"', desc = "Paste, overwriting (asks first)" },
+	{ on = "r",     run = "plugin safe-rename", desc = "Rename (asks first)" },
+	{ on = "<F2>",  run = "plugin safe-rename", desc = "Rename (asks first)" },
+	# dt / dD already show yazi's own "Trash / Permanently delete N files?" dialog.
+
+	# --- Favorites side panel ----------------------------------------------
+	# Click a favorite with the mouse to open it; right-click removes it.
+	{ on = ["'", "1"], run = "plugin favorites -- jump 1", desc = "Jump to favorite 1" },
+	{ on = ["'", "2"], run = "plugin favorites -- jump 2", desc = "Jump to favorite 2" },
+	{ on = ["'", "3"], run = "plugin favorites -- jump 3", desc = "Jump to favorite 3" },
+	{ on = ["'", "4"], run = "plugin favorites -- jump 4", desc = "Jump to favorite 4" },
+	{ on = ["'", "5"], run = "plugin favorites -- jump 5", desc = "Jump to favorite 5" },
+	{ on = ["'", "6"], run = "plugin favorites -- jump 6", desc = "Jump to favorite 6" },
+	{ on = ["'", "7"], run = "plugin favorites -- jump 7", desc = "Jump to favorite 7" },
+	{ on = ["'", "8"], run = "plugin favorites -- jump 8", desc = "Jump to favorite 8" },
+	{ on = ["'", "9"], run = "plugin favorites -- jump 9", desc = "Jump to favorite 9" },
+	{ on = ["g", "a"], run = "plugin favorites -- add",    desc = "Add current directory to favorites" },
+	{ on = ["g", "x"], run = "plugin favorites -- remove", desc = "Remove current directory from favorites" },
+	{ on = ["g", "R"], run = "plugin favorites -- reload", desc = "Reload favorites.tsv" },
+	{ on = ["g", "E"], run = ["shell --block -- nvim ~/.config/yazi/favorites.tsv", "plugin favorites -- reload"], desc = "Edit favorites.tsv" },
+	{ on = "B",        run = "plugin favorites -- toggle", desc = "Show or hide the favorites panel" },
+
+	# --- Drag files into GUI programs --------------------------------------
+	# Opens a small ripdrag window holding the selected/hovered files; drag from
+	# it into LibreOffice, a browser, a chat window, and so on.
+	{ on = "X", run = "shell --orphan -- ~/.config/yazi/scripts/drag-out.sh \"$@\"", desc = "Drag selected files out to a GUI program" },
+
+	# --- Help --------------------------------------------------------------
+	# One-page cheatsheet in a rofi overlay; the text lives in cheatsheet.tsv.
+	# F1 is left alone (yazi's own help). `~` also opens yazi's own searchable list of every key.
+	{ on = ["g", "?"], run = "shell --orphan -- ~/.config/yazi/scripts/cheatsheet.sh", desc = "Open the key cheatsheet" },
+
+	# Built in and left unchanged: `s` searches names (fd), `S` searches contents
+	# (ripgrep), `z` jumps via fzf, `Z` jumps via zoxide history.
+]

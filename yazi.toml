@@ -1,0 +1,52 @@
+# Yazi main configuration.
+# Reference: https://yazi-rs.github.io/docs/configuration/yazi
+
+[mgr]
+# Parent : current : preview column widths.
+ratio          = [1, 3, 4]
+sort_by        = "natural"
+sort_dir_first = true
+sort_sensitive = false
+show_hidden    = false
+show_symlink   = true
+scrolloff      = 5
+# Show file size on the right of every row; press `m` then s/m/p/o/n to switch.
+linemode       = "size"
+# Every mouse event yazi understands: click to select/open, scroll wheel,
+# touch gestures, hover (move) and drag.
+mouse_events   = ["click", "scroll", "touch", "move", "drag"]
+title_format   = "Yazi: {cwd}"
+
+[preview]
+max_width  = 1200
+max_height = 1800
+
+[opener]
+# Text files open in Neovim inside the yazi terminal; $EDITOR is not set on this system.
+edit = [
+	{ run = 'nvim "$@"', desc = "Neovim", block = true, for = "unix" },
+	{ run = 'vim "$@"',  desc = "Vim",    block = true, for = "unix" },
+]
+
+[open]
+# Rules are matched top to bottom; the first matching opener is the default
+# and the rest appear in the "open with" menu (`O`).
+prepend_rules = [
+	{ mime = "text/*",                  use = ["edit", "open"] },
+	{ mime = "application/json",        use = ["edit", "open"] },
+	{ mime = "application/x-shellscript", use = ["edit", "open"] },
+	{ url = "*.{md,toml,yaml,yml,lua,py,rs,go,js,ts,css,html,conf,ini,fish,sh}", use = ["edit", "open"] },
+]
+
+# Git status markers next to files; the plugin is set up in init.lua.
+[[plugin.prepend_fetchers]]
+id    = "git"
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+id    = "git"
+url   = "*/"
+run   = "git"
+group = "git"

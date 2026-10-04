@@ -1,0 +1,50 @@
+# section<TAB>key<TAB>action   -- read by ~/.config/herbstluftwm/cheatsheet.sh via scripts/cheatsheet.sh (g? in yazi)
+Move	h  j  k  l	Parent / down / up / enter
+Move	gg  ·  G	Top / bottom
+Move	Ctrl+d  ·  Ctrl+u	Half page down / up
+Move	H  ·  L	History back / forward
+Move	f + letters	Type-ahead: jump to the file starting with them
+Move	/  ?  n  N	Find forward / backward / next / previous match
+Move	s  ·  S	Search names (fd) / search contents (ripgrep)
+Move	z  ·  Z	Jump with fzf / with zoxide history
+Move	F	Filter the current folder
+Move	.  ·  zh	Show / hide hidden files
+Move	, + a n m s e	Sort by alpha / natural / time / size / ext (capital reverses)
+Move	m + s m p o	Show size / time / permissions / owner
+Select and edit	Space	Select file, move down
+Select and edit	v  ·  V	Visual select / visual unselect
+Select and edit	Ctrl+a  ·  Ctrl+r	Select all / invert selection
+Select and edit	yy  ·  dd	Copy / cut
+Select and edit	p	Paste (asks before moving, copies paste directly)
+Select and edit	P	Paste and overwrite (asks first)
+Select and edit	u  ·  Y	Cancel copy / cut
+Select and edit	a	New file (end name with / for a folder)
+Select and edit	r  ·  F2	Rename (asks first)
+Select and edit	dt  ·  dD	Trash / delete permanently (both ask)
+Select and edit	cc  cd  cf  cn	Copy path / folder / filename / name without extension
+Select and edit	cm  ·  cD	Change permissions / diff selected against hovered
+Open	Enter  ·  l	Open file / enter folder
+Open	o  ·  O	Open / choose which program
+Open	Tab	Spot: file details
+Open	;  ·  :	Run shell command / wait for it to finish
+Open	X	Drag selected files into a GUI app (ripdrag window)
+Open	Ctrl+t  ·  Ctrl+x	kitty here / LXQt file manager here
+Favorites	' + 1…9	Jump to favorite 1…9 (numbers shown in the panel)
+Favorites	ga  ·  gx	Add / remove the current folder
+Favorites	gE  ·  gR	Edit favorites.tsv / reload it
+Favorites	B	Show / hide the favorites panel
+Go to	gh  gc  gl  gd  gD	Home / .config / .local/share / Downloads / Documents
+Go to	gp  gv  gm  gP  gk	Pictures / Videos / MEGA-RMS / Projects / Desktop
+Go to	g/  ge  g Space	Root / /etc / type a path
+Tabs and panes	tt	New tab in this folder
+Tabs and panes	gt  gT  ·  ]  [	Next / previous tab
+Tabs and panes	1…9	Switch to tab number
+Tabs and panes	T  ·  Ctrl+p	Maximize / hide the preview
+Tabs and panes	J  ·  K	Scroll the preview down / up
+Tabs and panes	w	Task list (copies, moves in progress)
+Tabs and panes	M	Mount / unmount / eject drives
+Tabs and panes	q  ·  Ctrl+c	Quit / close tab
+Tabs and panes	g?  ·  ~	This cheatsheet / every key yazi knows
+Mouse	Click	Left selects, right opens, wheel scrolls
+Mouse	Favorites panel	Left-click opens a folder, right-click removes it
+Mouse	Drag a file	Drag out of the list into a GUI window
