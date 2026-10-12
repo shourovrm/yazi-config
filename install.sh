@@ -9,7 +9,7 @@ repo_directory=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 config_link=${XDG_CONFIG_HOME:-$HOME/.config}/yazi
 
 # yazi and its preview helpers, plus what the key bindings call:
-# kitty (Ctrl+t), rofi (g?), neovim (opening text), libnotify (drag-out errors),
+# kitty (Ctrl+t when $TERMINAL is unset), rofi (g?), neovim (opening text), libnotify (drag-out errors),
 # xclip (clipboard on X11), a Nerd Font (icons).
 packages=(
     yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick

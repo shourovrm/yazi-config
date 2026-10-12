@@ -9,5 +9,5 @@ require("git"):setup {
 -- Favorites side panel on the left; the list is stored in favorites.tsv.
 -- Must come after full-border so the panel is drawn inside its frame.
 require("favorites"):setup {
-	width = 24,
+	width = 16,
 }

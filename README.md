@@ -93,4 +93,4 @@ Two things differ per machine. `favorites.tsv` changes whenever you use `ga` or 
 
 ## Requirements
 
-Packages: `yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick xclip rofi kitty neovim libnotify` and a Nerd Font. `ripdrag` (AUR) is optional. The cheatsheet needs `rofi`, `Ctrl+t` needs `kitty`, and text files open in `neovim`.
+Packages: `yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick xclip rofi kitty neovim libnotify` and a Nerd Font. `ripdrag` (AUR) is optional. The cheatsheet needs `rofi`, `Ctrl+t` opens `$TERMINAL` and falls back to `kitty`, and text files open in `neovim`.

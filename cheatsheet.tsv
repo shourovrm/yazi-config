@@ -28,7 +28,7 @@ Open	o  ·  O	Open / choose which program
 Open	Tab	Spot: file details
 Open	;  ·  :	Run shell command / wait for it to finish
 Open	X	Drag selected files into a GUI app (ripdrag window)
-Open	Ctrl+t  ·  Ctrl+x	kitty here / LXQt file manager here
+Open	Ctrl+t  ·  Ctrl+x	Terminal here / LXQt file manager here
 Favorites	' + 1…9	Jump to favorite 1…9 (numbers shown in the panel)
 Favorites	ga  ·  gx	Add / remove the current folder
 Favorites	gE  ·  gR	Edit favorites.tsv / reload it

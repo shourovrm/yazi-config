@@ -54,7 +54,11 @@ prepend_keymap = [
 	{ on = "M",         run = "plugin mount", desc = "Mount, unmount or eject drives" },
 
 	# --- Shell integration -------------------------------------------------
-	{ on = "<C-t>",     run = 'shell --orphan -- kitty --directory "$PWD"', desc = "Open kitty terminal here" },
+	# yazi runs the command inside the current directory, and a terminal opens
+	# where it was launched, so no per-terminal directory flag is needed.
+	# $TERMINAL is unset when yazi is started straight from a window-manager
+	# key binding (no login shell in between), hence the kitty fallback.
+	{ on = "<C-t>",     run = 'shell --orphan -- ${TERMINAL:-kitty}',       desc = "Open the default terminal here" },
 	{ on = "<C-x>",     run = 'shell --orphan -- xdg-open "$PWD"',          desc = "Open this directory in the LXQt file manager" },
 
 	# --- Confirmations -----------------------------------------------------
