@@ -34,7 +34,7 @@ Favorites	ga  ·  gx	Add / remove the current folder
 Favorites	gE  ·  gR	Edit favorites.tsv / reload it
 Favorites	B	Show / hide the favorites panel
 Go to	gh  gc  gl  gd  gD	Home / .config / .local/share / Downloads / Documents
-Go to	gp  gv  gm  gP  gk	Pictures / Videos / MEGA-RMS / Projects / Desktop
+Go to	gp  gv  gm  gP  gk  gq	Pictures / Videos / MEGA / Projects / Desktop / POQA-Drive
 Go to	g/  ge  g Space	Root / /etc / type a path
 Tabs and panes	tt	New tab in this folder
 Tabs and panes	gt  gT  ·  ]  [	Next / previous tab
